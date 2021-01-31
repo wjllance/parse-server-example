@@ -49,16 +49,6 @@ app.get('/test', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-const port = process.env.PORT || 1337;
-if (!test) {
-  const httpServer = require('http').createServer(app);
-  httpServer.listen(port, function() {
-    console.log('parse-server-example running on port ' + port + '.');
-  });
-  // This will enable the Live Query real-time server
-  ParseServer.createLiveQueryServer(httpServer);
-}
-
 const ParseDashboard = require('parse-dashboard');
 const allowInsecureHTTP = true;
 
@@ -82,11 +72,15 @@ const dashboard = new ParseDashboard({
 // make the Parse Dashboard available at /
 app.use('/dash', dashboard);
 
-const port2 = process.env.DASHBOARD_PORT || 4040;
-const httpServer = require('http').createServer(app);
-httpServer.listen(port2, function() {
-  console.log('parse-dashboard-example running on port ' + port2 + '.');
-});
+const port = process.env.PORT || 80;
+if (!test) {
+  const httpServer = require('http').createServer(app);
+  httpServer.listen(port, function() {
+    console.log('parse-server-example running on port ' + port + '.');
+  });
+  // This will enable the Live Query real-time server
+  ParseServer.createLiveQueryServer(httpServer);
+}
 
 module.exports = {
   app,
