@@ -59,6 +59,35 @@ if (!test) {
   ParseServer.createLiveQueryServer(httpServer);
 }
 
+const ParseDashboard = require('parse-dashboard');
+const allowInsecureHTTP = true;
+
+const dashboard = new ParseDashboard({
+  apps: [
+    {
+      appId: process.env.APP_ID || 'myAppId',
+      masterKey: process.env.MASTER_KEY ,
+      serverURL:  process.env.SERVER_URL,
+      appName: process.env.APP_NAME || 'MyApp'
+    }
+  ],
+  users:
+    [
+      {
+        user:"admin",
+        pass:"admin"
+      }
+    ]
+}, allowInsecureHTTP);
+// make the Parse Dashboard available at /
+app.use('/dash', dashboard);
+
+const port2 = process.env.DASHBOARD_PORT || 4040;
+const httpServer = require('http').createServer(app);
+httpServer.listen(port2, function() {
+  console.log('parse-dashboard-example running on port ' + port2 + '.');
+});
+
 module.exports = {
   app,
   config
