@@ -23,7 +23,7 @@
     "test": "jasmine"
   },
   "engines": {
-    "node": "<=14"
+    "node": ">=4.3"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
