@@ -2,6 +2,7 @@
 // compatible API routes.
 require('dotenv').config()
 const express = require('express');
+const cors = require('cors');
 const ParseServer = require('parse-server').ParseServer;
 const path = require('path');
 const args = process.argv || [];
@@ -27,6 +28,8 @@ const config = {
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
 const app = express();
+
+app.use(cors())
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
