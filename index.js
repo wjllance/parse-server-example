@@ -7,6 +7,13 @@ const ParseServer = require('parse-server').ParseServer;
 const path = require('path');
 const args = process.argv || [];
 const test = args.some(arg => arg.includes('jasmine'));
+const QiniuAdapter = require('./qiniu-adapter');
+
+const qiniuAdapter = new QiniuAdapter({
+  bucket: process.env.QN_BUCKET || 'xueqing-parse', //required
+  accessKey: process.env.QN_ACCESS_KEY || '', // required
+  secretKey: process.env.QN_SECRET_KEY || '', //required,
+})
 
 const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -20,8 +27,9 @@ const config = {
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
-    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  }
+    // classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+  },
+  filesAdapter: qiniuAdapter
 };
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:

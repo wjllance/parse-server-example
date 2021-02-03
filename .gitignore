@@ -33,3 +33,5 @@ node_modules
 
 .idea
 .env
+.vercel
+.DS_Store
