@@ -13,6 +13,7 @@ const qiniuAdapter = new QiniuAdapter({
   bucket: process.env.QN_BUCKET || 'xueqing-parse', //required
   accessKey: process.env.QN_ACCESS_KEY || '', // required
   secretKey: process.env.QN_SECRET_KEY || '', //required,
+  secretKey: process.env.QN_REGION || 'z2', //required,
 })
 
 const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
