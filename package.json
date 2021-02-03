@@ -16,7 +16,7 @@
     "parse": "2.19.0",
     "parse-dashboard": "^2.1.0",
     "parse-server": "4.5.0",
-    "qiniu": "^7.3.2"
+    "qiniu": "^7.2.1"
   },
   "scripts": {
     "start": "node index.js",
