@@ -14,6 +14,7 @@ const qiniuAdapter = new QiniuAdapter({
   accessKey: process.env.QN_ACCESS_KEY || '', // required
   secretKey: process.env.QN_SECRET_KEY || '', //required,
   region: process.env.QN_REGION || 'z2', //required,
+  privateUrl: process.env.QN_PRIVATE_URL || 'http://qiniu.parse.wjllance.cn',
 })
 
 const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
