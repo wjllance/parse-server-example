@@ -81,6 +81,8 @@ const dashboard = new ParseDashboard({
         pass: process.env.APP_ADMIN_PASS || "admin",
       },
     ],
+  trustProxy: 1
+
 }, allowInsecureHTTP);
 // make the Parse Dashboard available at /
 app.use("/dash", dashboard);
