@@ -1,10 +1,10 @@
-FROM node:latest
+FROM node:12
 
 RUN mkdir parse
 
 ADD . /parse
 WORKDIR /parse
-RUN npm install
+RUN npm install --registry https://registry.npm.taobao.org
 
 #ENV APP_ID setYourAppId
 #ENV MASTER_KEY setYourMasterKey
